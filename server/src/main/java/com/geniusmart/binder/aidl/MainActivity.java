@@ -1,8 +1,10 @@
 package com.geniusmart.binder.aidl;
 
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -10,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.geniusmart.binder.R;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,5 +56,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
+    }
+
+    /**
+     * 通过反射，获取Provider对象
+     */
+    private void acquireAndLogProvider() {
+        Uri uri = Uri.parse("content://com.geniusmart.binder.AccountProvider/account");
+        ContentResolver contentResolver = getContentResolver();
+        try {
+            Method method = ContentResolver.class.getMethod("acquireProvider", new Class[]{Uri.class});
+            Object object = method.invoke(contentResolver, uri);
+            Log.i(TAG, object.getClass().toString());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 }

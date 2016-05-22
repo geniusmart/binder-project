@@ -24,6 +24,12 @@
                 <action android:name="com.geniusmart.server.ComputeService"/>
             </intent-filter>
         </service>
+
+        <provider
+            android:name=".provider.AccountProvider"
+            android:authorities="com.geniusmart.binder.AccountProvider"
+            android:exported="true">
+        </provider>
     </application>
 
 </manifest>
