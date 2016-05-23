@@ -18,17 +18,17 @@ import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "Server";
+    private static final String TAG = "Server进程";
     private ICompute mICompute;
 
     private ServiceConnection conn = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Server进程触发onServiceConnected : " + service.getClass().getName());
+            Log.i(TAG, TAG + "触发onServiceConnected : " + service.getClass().getName());
             mICompute = ICompute.Stub.asInterface(service);
-            Log.i(TAG, "Server进程触发asInterface : " + mICompute.getClass().getName());
+            Log.i(TAG, TAG + "触发asInterface : " + mICompute.getClass().getName());
             try {
-                Log.i(TAG, "Server进程触发add() : result = " + mICompute.add(3, 5));
+                Log.i(TAG, TAG + "触发add() : result = " + mICompute.add(3, 5));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

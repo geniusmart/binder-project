@@ -14,17 +14,17 @@ import com.geniusmart.client.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "Client";
+    private static final String TAG = "Client进程";
     private ICompute mICompute;
 
     private ServiceConnection conn = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            Log.i(TAG, "Client进程触发onServiceConnected : " + service.getClass().getName());
+            Log.i(TAG, TAG + "触发onServiceConnected : " + service.getClass().getName());
             mICompute = ICompute.Stub.asInterface(service);
-            Log.i(TAG, "Client进程触发asInterface : " + mICompute.getClass().getName());
+            Log.i(TAG, TAG + "触发asInterface : " + mICompute.getClass().getName());
             try {
-                Log.i(TAG, "Client进程触发add() : result = " + mICompute.add(3, 5));
+                Log.i(TAG, TAG + "触发add() : result = " + mICompute.add(3, 5));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
