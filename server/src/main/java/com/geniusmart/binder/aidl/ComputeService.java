@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class ComputeService extends Service {
 
-    public static final String TAG = "Server";
+    public static final String TAG = "Server进程";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -19,7 +19,7 @@ public class ComputeService extends Service {
 
         @Override
         public int add(int a, int b) throws RemoteException {
-            Log.i(TAG, "Server进程：" + this.getClass().getName() + "执行add()");
+            Log.i(TAG, TAG + this.getClass().getName() + "执行add()");
             return a + b;
         }
     }

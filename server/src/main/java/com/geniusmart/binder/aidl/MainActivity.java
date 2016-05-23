@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             mICompute = ICompute.Stub.asInterface(service);
             Log.i(TAG, TAG + "触发asInterface : " + mICompute.getClass().getName());
             try {
-                Log.i(TAG, TAG + "触发add() : result = " + mICompute.add(3, 5));
+                Log.i(TAG, TAG + "触发add() : 远程方法执行结果为" + mICompute.add(3, 5));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
