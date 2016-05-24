@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.geniusmart.binder.R;
 
@@ -75,5 +76,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public void printProviderType(View view) {
+        acquireAndLogProvider();
     }
 }
